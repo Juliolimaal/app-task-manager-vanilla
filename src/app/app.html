@@ -1,0 +1,27 @@
+<div class="max-w-6xl mx-auto p-6">
+  <header class="mb-6 flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-slate-800">Gerenciador de Tarefas - Estudos</h1>
+      <p class="text-slate-600 mt-1">
+        Adicione novas tarefas pelo botão <span class="font-semibold">+</span>.
+      </p>
+    </div>
+  </header>
+
+  <app-task-form (submitTask)="addTask($event)"></app-task-form>
+
+  <main class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    @for (column of columns; track column.status) {
+      <app-task-column
+        [title]="column.title"
+        [status]="column.status"
+        [tasks]="getTasksForColumn(column.status)"
+        (delete)="removeTask($event)">
+      </app-task-column>
+    }
+  </main>
+
+  <footer class="mt-6 text-sm text-slate-500">
+    Salvo em memória.
+  </footer>
+</div>

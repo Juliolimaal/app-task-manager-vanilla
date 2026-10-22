@@ -1,0 +1,76 @@
+<dialog
+  #dialogRef
+  class="w-full max-w-2xl rounded-lg p-6 shadow-lg backdrop:bg-black/40"
+  (close)="resetForm()">
+  <div class="flex items-start justify-between mb-4">
+    <h3 class="text-lg font-semibold">Nova tarefa</h3>
+    <button
+      type="button"
+      (click)="dialogRef.close()"
+      class="text-slate-500 hover:text-slate-800">
+      ✕
+    </button>
+  </div>
+
+  <form (ngSubmit)="submit(dialogRef)" class="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+    <label class="text-sm text-slate-700">
+      Título
+      <input
+        name="title"
+        [ngModel]="title()"
+        (ngModelChange)="title.set($event)"
+        required
+        class="w-full mt-1 rounded border p-2" />
+    </label>
+
+    <label class="text-sm text-slate-700">
+      Data término
+      <input
+        name="due"
+        type="date"
+        [ngModel]="due()"
+        (ngModelChange)="due.set($event)"
+        required
+        class="w-full mt-1 rounded border p-2" />
+    </label>
+
+    <label class="text-sm text-slate-700">
+      Nível
+      <select
+        name="level"
+        [ngModel]="level()"
+        (ngModelChange)="level.set($event)"
+        class="w-full mt-1 rounded border p-2">
+        <option value="low">Baixo</option>
+        <option value="medium">Médio</option>
+        <option value="high">Alto</option>
+      </select>
+    </label>
+
+    <label class="md:col-span-3 text-sm text-slate-700">
+      Descrição (breve)
+      <textarea
+        name="desc"
+        [ngModel]="desc()"
+        (ngModelChange)="desc.set($event)"
+        rows="2"
+        class="w-full mt-1 rounded border p-2">
+      </textarea>
+    </label>
+
+    <div class="md:col-span-3 text-right">
+      <button
+        type="submit"
+        class="rounded bg-indigo-600 px-4 py-2 text-white hover:bg-indigo-700">
+        Salvar tarefa
+      </button>
+    </div>
+  </form>
+</dialog>
+
+<button
+  type="button"
+  (click)="open(dialogRef)"
+  class="h-10 w-10 rounded-full bg-indigo-600 text-2xl text-white hover:bg-indigo-700">
+  +
+</button>

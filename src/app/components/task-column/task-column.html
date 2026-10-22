@@ -1,0 +1,10 @@
+<section>
+  <h2 class="mb-2 font-semibold">{{ title() }}</h2>
+  <div class="min-h-[200px] space-y-3 rounded bg-white p-3 shadow-sm">
+    @for (task of tasks(); track task.id) {
+      <app-task-card [task]="task" (delete)="delete.emit($event)"></app-task-card>
+    } @empty {
+      <p class="text-sm italic text-slate-400">Nenhuma tarefa</p>
+    }
+  </div>
+</section>
